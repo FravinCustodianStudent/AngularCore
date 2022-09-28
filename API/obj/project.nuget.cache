@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "jSXtnYiYBmO1R1FEYMXMEAJ7wJf993O0yOvBq4qFYUZxXB78tG13iLZUUVL40u6mnJMQh4SnFgFE2EpPy1fODQ==",
+  "dgSpecHash": "2YrFoovHlb8otNl7uVxnl7tSVQdiK+9qKL0HJ9UKfj9BFvriBEa/mCMaYwOW+76r5Z1XVfhr+z+P+tAfsGkI2w==",
   "success": true,
   "projectFilePath": "D:\\Learning\\AngularCore\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.9\\microsoft.data.sqlite.core.6.0.9.nupkg.sha512",
