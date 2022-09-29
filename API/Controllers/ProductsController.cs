@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Dtos;
 using API.Entities;
+using API.Errors;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Specification;
@@ -16,9 +17,8 @@ using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+
+    public class ProductsController : BaseApiController
     {
         private readonly ILogger<ProductsController> _logger;
         private readonly IGenericRepository<Product> _context;
@@ -50,6 +50,8 @@ namespace API.Controllers
                 .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
         }
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound )]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
@@ -59,7 +61,7 @@ namespace API.Controllers
                 
                 return Ok(_mapper.Map<Product,ProductToReturnDto>(product));
             }else{
-                return NotFound();
+                return NotFound(new ApiResponse(404));
             }
             
         }
