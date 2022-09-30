@@ -1,46 +1,47 @@
-﻿using API.Data;
 using API.Errors;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
-
-public class BuggyController : BaseApiController
+namespace API.Controllers
 {
-    private readonly StoreContext _context;
-
-    public BuggyController(StoreContext context)
+    public class BuggyController : BaseApiController
     {
-        _context = context;
-    }
-    [HttpGet("notfound")]
-    public ActionResult GetNotFoundRequest()
-    {
-        var thing = _context.Products.Find(42);
+        private readonly StoreContext _context;
+        public BuggyController(StoreContext context)
+        {
+            _context = context;
+        }
 
-        if (thing == null) return NotFound(new ApiResponse(404));
+        [HttpGet("notfound")]
+        public ActionResult GetNotFoundRequest()
+        {
+            var thing = _context.Products.Find(42);
 
-        return Ok();
-    }
+            if (thing == null) return NotFound(new ApiResponse(404));
 
-    [HttpGet("servererror")]
-    public ActionResult GetServerError()
-    {
-        var thing = _context.Products.Find(42);
+            return Ok();
+        }
 
-        var thingToReturn = thing.ToString();
+        [HttpGet("servererror")]
+        public ActionResult GetServerError()
+        {
+            var thing = _context.Products.Find(42);
 
-        return Ok();
-    }
+            var thingToReturn = thing.ToString();
 
-    [HttpGet("badrequest")]
-    public ActionResult GetBadRequest()
-    {
-        return BadRequest(new ApiResponse(400));
-    }
+            return Ok();
+        }
 
-    [HttpGet("badrequest/{id}")]
-    public ActionResult GetNotFoundRequest(int id)
-    {
-        return Ok();
+        [HttpGet("badrequest")]
+        public ActionResult GetBadRequest()
+        {
+            return BadRequest(new ApiResponse(400));
+        }
+
+        [HttpGet("badrequest/{id}")]
+        public ActionResult GetNotFoundRequest(int id)
+        {
+            return Ok();
+        }
     }
 }

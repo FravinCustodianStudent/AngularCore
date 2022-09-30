@@ -1,6 +1,7 @@
-﻿namespace API.Entities;
-
-public class ProductBrand :BaseEntity
+namespace Core.Entities
 {
-    public string Name { get; set; }
+    public class ProductBrand : BaseEntity
+    {
+        public string Name { get; set; }
+    }
 }

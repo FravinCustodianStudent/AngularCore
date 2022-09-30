@@ -1,15 +1,15 @@
-﻿using API.Errors;
+using API.Errors;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
-
-[Route("errors/{code}")]
-[ApiExplorerSettings(IgnoreApi = true)]
-
-public class ErrorController :BaseApiController
+namespace API.Controllers
 {
-    public IActionResult Error(int code)
+    [Route("errors/{code}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public class ErrorController : BaseApiController
     {
-        return new ObjectResult(new ApiResponse(code));
+        public IActionResult Error(int code)
+        {
+            return new ObjectResult(new ApiResponse(code));
+        }
     }
 }

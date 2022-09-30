@@ -1,6 +1,7 @@
-﻿using API.Data;
+﻿
 using API.Errors;
 using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Extensions;
