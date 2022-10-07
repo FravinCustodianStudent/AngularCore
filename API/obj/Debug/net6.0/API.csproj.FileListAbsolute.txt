@@ -87,3 +87,7 @@ D:\Learning\AngularCore\API\bin\Debug\net6.0\Core.pdb
 D:\Learning\AngularCore\API\bin\Debug\net6.0\AutoMapper.dll
 D:\Learning\AngularCore\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Learning\AngularCore\API\bin\Debug\net6.0\API.staticwebassets.runtime.json
+D:\Learning\AngularCore\API\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+D:\Learning\AngularCore\API\bin\Debug\net6.0\StackExchange.Redis.dll
+D:\Learning\AngularCore\API\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+D:\Learning\AngularCore\API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
