@@ -8,10 +8,11 @@ import {CheckoutRoutingModule} from "./checkout-routing.module";
 @NgModule({
   declarations: [
     CheckoutComponent,
-    CheckoutRoutingModule
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CheckoutRoutingModule
   ]
 })
 export class CheckoutModule { }
