@@ -13,3 +13,5 @@ D:\Learning\AngularCore\Infrastructure\obj\Debug\net6.0\Infrastructure.dll
 D:\Learning\AngularCore\Infrastructure\obj\Debug\net6.0\refint\Infrastructure.dll
 D:\Learning\AngularCore\Infrastructure\obj\Debug\net6.0\Infrastructure.pdb
 D:\Learning\AngularCore\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
+D:\Learning\AngularCore\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
+D:\Learning\AngularCore\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache

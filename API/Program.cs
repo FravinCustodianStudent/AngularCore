@@ -5,6 +5,8 @@ using API.Helpers;
 using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
@@ -18,7 +20,9 @@ builder.Services.AddApplicationServices();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(x =>x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<AppIdentityDbContext>(x
+    => x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
+builder.Services.AddIdentityService(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerDocumentation();
@@ -57,6 +61,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseCors("CorsPolicy");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
