@@ -20,7 +20,7 @@ public class MappingProfiles : Profile
                 o => o.MapFrom<ProductUrlResolver>());
         CreateMap<Address, AddressDto>().ReverseMap();
         CreateMap<CustomerBasketDto, CustomerBasket>();
-        CreateMap<BasketItemDto, BasketItemDto>();
+        CreateMap<BasketItemDto, BasketItem>();
 
     }
 }
