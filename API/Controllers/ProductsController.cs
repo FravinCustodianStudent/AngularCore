@@ -49,7 +49,12 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, 
                 productParams.PageSize, totalItems, data));
         }
-
+        
+        /// <summary>
+        ///  A method, that return you a product by id  
+        /// </summary>
+        /// <param name="id">Identificator of product</param>
+        /// <returns>productDto or product that used for client side </returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
