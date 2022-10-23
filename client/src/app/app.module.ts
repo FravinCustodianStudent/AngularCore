@@ -10,6 +10,8 @@ import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
 import { NgxSpinnerModule} from "ngx-spinner";
 import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 import {CheckoutModule} from "./checkout/checkout.module";
+import {CdkStepperModule} from "@angular/cdk/stepper";
+import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +24,13 @@ import {CheckoutModule} from "./checkout/checkout.module";
     CoreModule,
     HomeModule,
     NgxSpinnerModule,
-    CheckoutModule
+    CheckoutModule,
+    CdkStepperModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true
-  },
-    {
-      provide: HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true
-    },
+  providers: [
+    {provide: HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
   ],
   exports:[NgxSpinnerModule],
   bootstrap: [AppComponent]
