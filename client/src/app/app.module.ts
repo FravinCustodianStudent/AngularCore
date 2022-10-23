@@ -12,6 +12,7 @@ import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 import {CheckoutModule} from "./checkout/checkout.module";
 import {CdkStepperModule} from "@angular/cdk/stepper";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
+import {OrdersModule} from "./orders/orders.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
     HomeModule,
     NgxSpinnerModule,
     CheckoutModule,
+    OrdersModule,
     CdkStepperModule
   ],
   providers: [
