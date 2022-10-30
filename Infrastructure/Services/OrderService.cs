@@ -10,46 +10,55 @@ public class OrderService : IOrderService
 
     private readonly IUnitOfWork _unitOfWork;
     private readonly IBasketRepository _basketRepo;
+    private readonly IPaymentService _paymentService;
 
-    public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
+    public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo, IPaymentService paymentService)
     {
         _unitOfWork = unitOfWork;
         _basketRepo = basketRepo;
+        _paymentService = paymentService;
     }
     public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, Address shippingAddress)
     {
-        // get basket from the repo
+        // get basket from repo
         var basket = await _basketRepo.GetBasketAsync(basketId);
-        
+
         // get items from the product repo
         var items = new List<OrderItem>();
         foreach (var item in basket.Items)
         {
-            
             var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
-            var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name,
-                productItem.PictureUrl);
-            var orderItem = new OrderItem(itemOrdered,productItem.Price, item.Quantity);
+            var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
+            var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
             items.Add(orderItem);
         }
-        //get delivery method from repo
+
+        // get delivery method from repo
         var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
-        
-        //calc subtotal
+
+        // calc subtotal
         var subtotal = items.Sum(item => item.Price * item.Quantity);
-        
-        //create order
-        var order = new Order(items,buyerEmail,shippingAddress,deliveryMethod,subtotal);
-        order.PaymentIntentId = "";
+
+        // check to see if order exists
+        var spec = new OrderByPaymentIntentWithItemsSpecification(basket.PaymentIntentId);
+        var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+
+        // create order
+        var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
         _unitOfWork.Repository<Order>().Add(order);
-        //save to db
+
+        if (existingOrder != null)
+        {
+            _unitOfWork.Repository<Order>().Delete(existingOrder);
+            await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+        }
+
+        // TODO: save to db
         var result = await _unitOfWork.Complete();
+
         if (result <= 0) return null;
-        
-        //delete basket
-        await _basketRepo.DeleteBasketAsync(basketId);
-        
-        //return order
+
+        // return order
         return order;
     }
 
