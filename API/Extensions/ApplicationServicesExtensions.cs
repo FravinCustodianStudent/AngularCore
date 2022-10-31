@@ -11,6 +11,7 @@ public static class ApplicationServicesExtensions
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection Services)
     {
+        Services.AddSingleton<IResponseCacheService, ResponseCacheService>();
         Services.AddScoped<IUnitOfWork, UnitOfWork>();
         Services.AddScoped<ITokenService, TokenService>();
         Services.AddScoped<IOrderService, OrderService>();

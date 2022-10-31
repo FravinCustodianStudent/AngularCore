@@ -3,3 +3,11 @@
   width: auto;
   vertical-align: middle;
 }
+.list-group-item{
+  cursor: pointer;
+  transition: 0.5s all;
+  &:hover{
+    background-color: #ebebfa;
+    border-color: #dbdbf6;
+  }
+}
