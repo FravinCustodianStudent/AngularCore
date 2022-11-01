@@ -22,7 +22,7 @@ public static class ApplicationServicesExtensions
         Services.AddScoped<IProductRepository, ProductRepository>();
         Services.AddScoped<IBasketRepository, BasketRepository>();
         Services.AddScoped(typeof(IGenericRepository<>),(typeof(GenericRepository<>)));
-        
+        Services.AddScoped<IPhotoService, PhotoService>();
         
         Services.Configure<ApiBehaviorOptions>(options =>
         {

@@ -9,6 +9,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,7 +60,18 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+    RequestPath = "/content"
+});
+// app.UseRouting();
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+//     endpoints.MapFallbackToController("Index","Fallback");
+// });
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();

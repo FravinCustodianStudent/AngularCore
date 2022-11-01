@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes } from '@angular/router';
 import { EditProductComponent } from './edit-product/edit-product.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
 import { AdminComponent } from './admin.component';
 
 
