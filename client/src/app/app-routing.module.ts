@@ -5,6 +5,7 @@ import {TestErrorComponent} from "./core/test-error/test-error.component";
 import {ServerErrorComponent} from "./core/server-error/server-error.component";
 import {NotFoundComponent} from "./core/not-found/not-found.component";
 import {AuthGuard} from "./core/guards/auth.guard";
+import {AdminGuard} from "./core/guards/admin.guard";
 
 const routes: Routes = [
   {path: '',component:HomeComponent,data:{breadcrumb: 'Home'}},
@@ -28,6 +29,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./orders/orders.module').then(mod => mod.OrdersModule),
     data: { breadcrumb: 'Orders' }
+  },
+  {
+    path: 'admin',
+    canActivate:[AuthGuard,AdminGuard],
+    loadChildren: () => import('./admin/admin.module')
+      .then(mod => mod.AdminModule), data: { breadcrumb: 'Admin' }
   },
   {path:'**',redirectTo: 'not-found',pathMatch:'full'}
 ];

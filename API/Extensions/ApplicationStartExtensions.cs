@@ -20,9 +20,10 @@ public static class ApplicationStartExtensions
             await StoreContextSeed.SeedAsync(context, loggerFactory);
 
             var userManager = services.GetRequiredService<UserManager<AppUser>>();
+            var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
             var identityContext = services.GetRequiredService<AppIdentityDbContext>();
             await identityContext.Database.MigrateAsync();
-            await ApiIdentityDbContextSeed.SeedUsersAsync(userManager);
+            await ApiIdentityDbContextSeed.SeedUsersAsync(userManager, roleManager);
         }
         catch (Exception ex)
         {

@@ -41,6 +41,9 @@ public class MappingProfiles : Profile
             .ForMember(d =>
                 d.PictureUrl, o => 
                 o.MapFrom<OrderItemUrlResolver>());
-
+        CreateMap<ProductCreateDto, Product>();
+        CreateMap<Photo, PhotoToReturnDto>()
+            .ForMember(d => d.PictureUrl, 
+                o => o.MapFrom<PhotoUrlResolver>());
     }
 }

@@ -15,9 +15,10 @@ public class ProductUrlResolver : IValueResolver<Product,ProductToReturnDto,stri
     }
     public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context)
     {
-        if (!string.IsNullOrWhiteSpace(source.PictureUrl))
+        var photo = source.Photos.FirstOrDefault(x => x.IsMain);
+        if(photo != null)
         {
-            return _config["ApiUrl"] + source.PictureUrl;
+            return _config["ApiUrl"] + photo.PictureUrl;
         }
 
         return null;
